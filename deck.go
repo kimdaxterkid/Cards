@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 // Create a new type of 'deck'
 // which is a slice of strings
@@ -31,4 +35,14 @@ func (d deck) print() {
 // but in the return syntax, there is no need of the parenthesis
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// strings package has the easy function for me - join
+func (d deck) toString() string {
+	return strings.Join([]string(d), ", ")
+}
+
+// io/ioutil package to save file
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 }
