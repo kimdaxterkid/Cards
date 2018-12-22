@@ -26,3 +26,9 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// there is the parenthesis for two returns
+// but in the return syntax, there is no need of the parenthesis
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
+}
